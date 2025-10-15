@@ -14,7 +14,7 @@ public class FileTaxRate implements ForGettingTaxRates {
     }
 
     @Override
-    public double taxRate(double amount) throws TaxRateReadException {
+    public double taxRate() throws TaxRateReadException {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line = br.readLine();
             if (line != null) {

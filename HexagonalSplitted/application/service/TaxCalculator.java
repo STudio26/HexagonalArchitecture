@@ -11,6 +11,6 @@ public class TaxCalculator implements ForCalculatingTaxes {
     }
 
     public double taxOn(double amount) {
-        return amount * taxRateRepository.taxRate(amount);
+        return amount * taxRateRepository.taxRate();
     }
 }

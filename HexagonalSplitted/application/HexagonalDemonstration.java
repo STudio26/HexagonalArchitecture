@@ -8,15 +8,22 @@ import application.service.TaxCalculator;
 
 class Main {
     public static void main(String[] args) {
+        computeWithFixedTaxRate();
+        computeWithTaxRateInFile();
+    }
+
+    private static void computeWithFixedTaxRate() {
         ForGettingTaxRates taxRateRepository = new FixedTaxRate();
         TaxCalculator myCalculator = new TaxCalculator(taxRateRepository);
         System.out.println(myCalculator.taxOn(100));
+    }
 
+    private static void computeWithTaxRateInFile() {
         String filePath = "taxrate.txt";
         try {
-            ForGettingTaxRates otherTaxRateRepository = new FileTaxRate(filePath);
-            TaxCalculator myOtherCalculator = new TaxCalculator(otherTaxRateRepository);
-            System.out.println(myOtherCalculator.taxOn(100));
+            ForGettingTaxRates taxRateRepository = new FileTaxRate(filePath);
+            TaxCalculator myCalculator = new TaxCalculator(taxRateRepository);
+            System.out.println(myCalculator.taxOn(100));
         } catch (TaxRateReadException e) {
             System.err.println(("Error retrieving tax rate: " + e.getMessage()));
             e.printStackTrace();
